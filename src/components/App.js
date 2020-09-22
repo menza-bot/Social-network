@@ -7,7 +7,8 @@ function App() {
     <div className="App">
       <div>Some text </div>
       <div>Some text and something else</div>
-      <span className="matura"></span>
+      <div>how to make this kind of prepand</div>
+      <div>new text</div>
     </div>
   );
 }
