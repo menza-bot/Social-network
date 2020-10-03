@@ -1,0 +1,15 @@
+.header {
+    display: grid;
+    grid-area: header;
+    font-size: medium;
+    background-color: rgb(255, 255, 255);
+    justify-content: center;
+    border-radius: 45px;
+    margin-top: .7rem;
+}
+
+.github {
+    color: rgb(65, 65, 65);
+    margin-top: 11px;
+    margin-right: 77rem
+}

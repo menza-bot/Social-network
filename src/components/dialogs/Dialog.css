@@ -1,0 +1,46 @@
+.head {
+    font-size: 1.4rem;
+    color: rgb(107, 107, 107);
+    margin-top: 45px;
+    margin-left: 455px;
+    margin-bottom: 45px;
+}
+
+.body-of-dialog {
+    display: grid;
+    grid-template-columns: 1.2fr 5fr;
+    margin: 2rem
+}
+
+.list-of-names {
+    font-size: 1.2rem;
+    padding-left: 50px;
+    text-decoration: none;
+    list-style-type: none;
+    margin-top: 5px;
+
+}
+
+li {
+    margin-bottom: 45px;
+    color: rgb(107, 107, 107)
+}
+
+.messages-of-names {
+    border-style: solid;
+    border-color:rgb(226, 226, 226);
+    border-width: 3px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+
+.nothing {
+    margin-top: 230px;
+
+}
+
+
+* {
+    color: rgb(107, 107, 107)
+}

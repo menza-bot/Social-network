@@ -1,0 +1,19 @@
+.sidebarlist {
+    font-size: 1.2rem;
+}
+
+a {
+    display: block;
+    list-style-type: none;
+    text-align: center;
+    color: rgb(107, 107, 107);
+    margin: 1.5rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.list {
+    justify-content: center;
+    margin-top: 55px;
+}
+
