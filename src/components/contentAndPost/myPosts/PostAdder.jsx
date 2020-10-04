@@ -1,5 +1,6 @@
 import './PostAdder.css'
 import React from 'react'
+import {addPostActionCreator, changeNewPostTextActionCreator} from './../../../redux/store'
 
 
 
@@ -13,25 +14,25 @@ export default function PostAdder(props) {
 
     console.log(props.state.posts[0]);
 
-    let one = props.state.posts[0]
+    //let one = props.state.posts[0]
 
     let TextOfNewPostElement = React.createRef()
 
-    debugger
+    //debugger
 
     let addPostOnClick = () => {
         let newText = TextOfNewPostElement.current.value;
-        props.addPost(newText)
+        props.dispatch(addPostActionCreator(newText))
         TextOfNewPostElement.current.value = ''
 
     }
     
-    debugger
+    //debugger
 
     function onChangeWatcher() {
         let newValue = TextOfNewPostElement.current.value;
-        console.log(newValue);
-        props.changeNewPostText(newValue)
+        //console.log(newValue);
+        props.dispatch(changeNewPostTextActionCreator(newValue))
     }
 
     console.log(props.state);

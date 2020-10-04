@@ -11,7 +11,7 @@ export default function Profile(props) {
     return(
         <div className="main">
             <div className="profile">Profile</div>
-            <PostAdder state = {props.state} changeNewPostText = {props.changeNewPostText} newPostText = {props.state.newPostText} addPost = {props.addPost}/>
+            <PostAdder state = {props.state} newPostText = {props.state.newPostText} dispatch = {props.dispatch}/>
         </div>
     )
 }

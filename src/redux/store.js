@@ -1,5 +1,5 @@
 //import { rerenderEntireTree } from "../render"
-
+import  profileReducer from './profile-reducer'
 
 
 
@@ -23,6 +23,23 @@ let store = {
             newPostText:  {value:''}
         },
         
+        dispatch(action) {
+
+            this._state = profileReducer(this._state, action)
+
+            //if (action.type === 'ADD-POST') {
+            //    let somePost = {
+            //       id: 2, message: action.PostMessage
+            //    }
+            //    this._state.posts.push(somePost);
+            //    this.rerenderEntireTree(this._state);
+            //}
+            //else if (action.type === 'CHANGE-NEW-POST-TEXT') {
+            //    this._state.newPostText = action.newValue
+            //    this.rerenderEntireTree(this._state);
+            //}
+            this.rerenderEntireTree(this._state)
+        },
 
         rerenderEntireTree() {
             console.log('State is changed');
@@ -30,21 +47,39 @@ let store = {
         getState() {
             return this._state
         },
-        addPost(PostMessage) {
-            let somePost = {id: 2, message: PostMessage}
-            this._state.posts.push(somePost);
-            this.rerenderEntireTree(this._state);
-        },
-        changeNewPostText(newValue) {
-            this._state.newPostText = newValue
-            this.rerenderEntireTree(this._state);
-        },
+        //addPost(PostMessage) {
+        //   let somePost = {id: 2, message: PostMessage}
+        //   this._state.posts.push(somePost);
+        //    this.rerenderEntireTree(this._state);
+        //},
+        //changeNewPostText(newValue) {
+        //    this._state.newPostText = newValue
+        //    this.rerenderEntireTree(this._state);
+        //},
         subscribe(observer) {
             this.rerenderEntireTree = observer // pattern 
         }
         
 
+}
+
+
+
+export const addPostActionCreator = (newText) => {
+    return {
+        type: 'ADD-POST',
+        PostMessage: newText
     }
+}
+
+export const changeNewPostTextActionCreator = (newValue) => {
+    return {
+        type: 'CHANGE-NEW-POST-TEXT',
+        newValue: newValue
+    }
+}
+
+
 
     
 

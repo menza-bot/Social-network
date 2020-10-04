@@ -15,7 +15,7 @@ export default function Content(props) {
     
     return (
         <div className="content">
-            <Route path = '/profile' render = {() => <Profile changeNewPostText = {props.changeNewPostText} state = {props.state} newPostText = {props.state.newPostText} addPost = {props.addPost}/>} />
+            <Route path = '/profile' render = {() => <Profile state = {props.state} newPostText = {props.state.newPostText} dispatch = {props.dispatch}/>} />
             <Route path = '/dialogs' render = {() => <Dialog state = {props.state}/>} />
             <Route path = '/news' component = {News} />
             <Route path = '/music' component = {Music} />

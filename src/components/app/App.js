@@ -17,8 +17,7 @@ function App(props) {
           <Sidebar />
           <Content newPostText = {props.state.newPostText}
             state = {props.state}
-            changeNewPostText = {props.changeNewPostText}
-            addPost = {props.addPost}/>
+            dispatch = {props.dispatch}/>
         </BrowserRouter>
       </div>
     

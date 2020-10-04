@@ -16,7 +16,7 @@ import App from './components/app/App';
 
 export let rerenderEntireTree = (state) => {
     ReactDOM.render(
-        <App state = {store.getState()} addPost = {store.addPost.bind(store)} changeNewPostText = {store.changeNewPostText.bind(store)}/>,
+        <App state = {store.getState()} dispatch = {store.dispatch.bind(store)}/>,
     document.getElementById('root')
     );
 }
