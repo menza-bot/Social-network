@@ -7,10 +7,11 @@ const NavLinks = [
     {id: 2, header: 'Messages', link: '/dialogs'}, 
     {id: 3, header: 'News', link: '/news'}, 
     {id: 4, header: 'Music', link: '/music'}, 
-    {id: 5, header: 'Settings', link: '/settings'}
+    {id: 5, header: 'Settings', link: '/settings'},
+    {id: 6, header: 'Find Someone', link: '/findSomeone'}
 ]
 
-let NavLinksMapped = NavLinks.map((item, key) => {
+let NavLinksMapped = NavLinks.map((item) => {
     return <NavLink to = {item.link} key = {item.id}>{item.header}</NavLink>
 })
 

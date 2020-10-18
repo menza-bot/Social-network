@@ -1,0 +1,8 @@
+.users-block {
+    display: grid;
+    grid-template-columns: auto;
+    padding: 50px;
+    margin: 20px;
+    border-color: aquamarine;
+    border-style: solid;
+}

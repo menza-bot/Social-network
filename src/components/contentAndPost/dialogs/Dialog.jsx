@@ -1,6 +1,7 @@
 import React from 'react'
 //import { NavLink } from 'react-router-dom'
 import './Dialog.css'
+import DialogListContainer from './DialogListContainer'
 
 
 
@@ -10,19 +11,17 @@ import './Dialog.css'
 //})
 
 
-export default function Dialogs(props) {
-    console.log(props.state.listOfNamesData[0]);
+export default function Dialogs() {
     
-    let listOfNamesMapped = props.state.listOfNamesData.map((item, key) => {
-        return <li key = {item.id}>{item.name}</li>
-    })
+    
+    
 
     return(
         <div className="dialog">
             <header className ="head">Messages</header>
             <div className="body-of-dialog">
                 <div className="list-of-names">
-                    <div>{listOfNamesMapped}</div>
+                    <DialogListContainer />
                 </div>
                 <div className="messages-of-names">
                     <div className = 'nothing'>Nothing is here yet...</div>

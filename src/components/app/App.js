@@ -6,8 +6,9 @@ import Content from '../contentAndPost/Content'
 import './App.css';  
 import { BrowserRouter } from 'react-router-dom'
 
-function App(props) {
-  console.log(props.changeNewPostText);
+
+function App() {
+  //console.log(props.state.profileReducer);
   
   return (
     
@@ -15,9 +16,7 @@ function App(props) {
         <BrowserRouter>
           <Header />
           <Sidebar />
-          <Content newPostText = {props.state.newPostText}
-            state = {props.state}
-            dispatch = {props.dispatch}/>
+          <Content />
         </BrowserRouter>
       </div>
     
