@@ -12,7 +12,8 @@ let initialState = {
         {name: "Richard", id: 5},
         {name: "Otto", id: 6},
         {name: "Gunna", id: 7}
-    ]
+    ],
+    profile: null
 }
 
 
@@ -22,10 +23,34 @@ let initialState = {
 
 
 const profileReducer = (state = initialState, action) => {
+    
+
+    switch(action.type) {
+        case 'ADD-POST': {
+            let somePost = {
+                id: 2, message: action.PostMessage
+            }
+            let stateCopy = {...state}
+            //console.log(stateCopy);
+            
+            stateCopy.posts = [...state.posts]
+            stateCopy.posts.push(somePost);
+            return stateCopy 
+        }
+        case 'CHANGE-NEW-POST-TEXT': {
+            let stateCopy = {...state}
+            stateCopy.newPostText = action.newValue
+            return stateCopy
+        }
+        case 'SET-USER-PROFILE': {
+            return {...state, profile: action.profile}
+        }
+        default: 
+            return state
+    }
 
     
-    
-    if (action.type === 'ADD-POST') {
+    /* if (action.type === 'ADD-POST') {
         let somePost = {
             id: 2, message: action.PostMessage
         }
@@ -41,7 +66,11 @@ const profileReducer = (state = initialState, action) => {
         stateCopy.newPostText = action.newValue
         return stateCopy
     }
-    return state
+    else if (action.type === 'SET-USER-PROFILE') {
+        
+        return {...state, profile: action.profile}
+    }
+    return state */
 }
 
 export const addPostActionCreator = (newText) => {
@@ -55,6 +84,13 @@ export const changeNewPostTextActionCreator = (newValue) => {
     return {
         type: 'CHANGE-NEW-POST-TEXT',
         newValue: newValue
+    }
+}
+
+export const setUserProfile = (profile) => {
+    return {
+        type: 'SET-USER-PROFILE',
+        profile
     }
 }
 

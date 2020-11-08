@@ -6,7 +6,7 @@ import React from 'react'
 
 export default function PostAdder(props) {
 
-    console.log(props.state.profilePage.posts);
+    
 
     let stupidPosts = props.state.profilePage.posts.map((item) => {
         return <div>{item.message}</div>

@@ -34,39 +34,25 @@
 //}
 
 let initialstate = {
-    users: [
-        {
-            id: 1,
-            name: "Pavel",
-            toggle: false,
-            city: "Minsk"
-        },
-        {
-            id: 2,
-            name: "Victor",
-            toggle: true,
-            city: "Prague"
-        },
-        {
-            id: 3,
-            name: "Mukhin",
-            toggle: false,
-            city: "Vienna"
-        }
-    ]
+    users: [],
+    totalUsersCount: 25,
+    pageSize: 5,
+    currentPage: 1,
+    isFetching: true, // loading page
+    followingInProgress: false // disabling page during ajax requesting
 }
 
 
 const usersReducer = (state = initialstate, action) => {
     
 
-        debugger
+        
         switch(action.type) {
             case "FOLLOW":
                 return {...state, users: state.users.map(u => {
-                    debugger
+                    
                     if (u.id === action.userID) {
-                        return {...u, toggle: false}
+                        return {...u, followed: true}
                     }
 
                     return u
@@ -76,13 +62,22 @@ const usersReducer = (state = initialstate, action) => {
                 return {...state, users: state.users.map((u) => {
                     
                     if (u.id === action.userID) {
-                        return {...u, toggle: true}
+                        return {...u, followed: false}
                 }
 
                 return u
                 })
             }
-            default: 
+            case "SET-USERS": {
+                return {...state, users: action.users}
+            }
+            case "SET-USERS-CURRENTPAGE": {
+                return {...state, currentPage: action.currentPageProps}
+            }
+            case "TOGGOLE-IS-FOLLOWING": {
+                return {...state, followingInProgress: action.isFetching}
+            }
+            default:  // this is default 
                 return state
 
         }
@@ -91,7 +86,7 @@ const usersReducer = (state = initialstate, action) => {
 
 
 export const followAC = (userID) => {
-    debugger
+    
     return {
         type: 'FOLLOW',
         userID
@@ -107,12 +102,39 @@ export const unFollowAC = (userID) => {
 }
 
 
-export const setUsersAC = () => {
-    
+export const setUsersAC = (users) => {
+    return {
+        type: 'SET-USERS',
+        users
+    }
+}
+
+export const setUsersCurrentAC = (currentPageProps) => {
+    return {
+        type: 'SET-USERS-CURRENTPAGE',
+        currentPageProps
+    }
 }
 
 
-export default usersReducer
+
+
+const getUsersThunk = (dispatch) => {
+    
+} 
+
+
+
+//how we gonna make thunks
+
+
+/* export const getUsersThunk = (dispatch) => {
+    usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(response => {
+        this.props.setUsers(response.items)
+        })
+} */
+
+export default usersReducer // we need
 
 
 
