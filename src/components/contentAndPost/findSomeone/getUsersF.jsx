@@ -1,6 +1,7 @@
-import * as axios from 'axios'
+//import * as axios from 'axios'
 import React from 'react' 
 import { NavLink } from 'react-router-dom'
+import { usersAPI } from '../../../api/api'
 
 
 
@@ -39,20 +40,7 @@ import { NavLink } from 'react-router-dom'
                         {
                             u.followed 
                             ? <button  onClick = {() => {
-                                //props.toggleIsFollowing(true)
-                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                    withCredentials: true,
-                                    headers: {
-                                        'API-KEY': '694b4ab8-8917-48c6-9edf-af5966ffc44a'
-                                    }
-                                }).then(response => {
-                                    if (response.data.resultCode === 0) {
-                                        props.unFollow(u.id)
-                                    }
-                                    //props.toggleIsFollowing(false)
-                                }) 
-                                //props.unFollow(u.id)
-                            
+                                props.unfollowAcceptThunkCreator(u.id)
                             }}>unfollow</button>
                             
                             
@@ -60,21 +48,7 @@ import { NavLink } from 'react-router-dom'
                             
                             
                             <button onClick = {() => {
-                                //props.toggleIsFollowing(true)
-                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                    withCredentials: true,
-                                    headers: {
-                                        'API-KEY': '694b4ab8-8917-48c6-9edf-af5966ffc44a'
-                                        
-                                }
-                            }).then(response => {
-                                if (response.data.resultCode === 0) {
-                                    props.follow(u.id)
-                                }
-                                //props.toggleIsFollowing(false)
-
-                            }) 
-                            //props.follow(u.id)
+                                props.followAcceptThunkCreator(u.id)
                             }}>follow</button>
                         }
                     </div> 

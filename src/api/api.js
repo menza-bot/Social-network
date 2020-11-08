@@ -7,7 +7,10 @@ import * as axios from 'axios'
 
 export const axiosInstance = axios.create({  //this tool hepls us to tune our default axios
     withCredentials: true,
-    baseURL: `https://social-network.samuraijs.com/api/1.0/`
+    baseURL: `https://social-network.samuraijs.com/api/1.0/`,
+    headers: {
+        'API-KEY': '694b4ab8-8917-48c6-9edf-af5966ffc44a'
+    }
 })
 
 
@@ -17,6 +20,12 @@ export const usersAPI = {
             .then((response) => { 
                 return response.data
             })
+    },
+    makeUsersFollowed(userID) {
+        return axiosInstance.post(`follow/${userID}`)
+    },
+    makeUsersUnfollowed(userID) {
+        return axiosInstance.delete(`follow/${userID}`)
     }
 }
 

@@ -3,11 +3,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import GetUsersF from './getUsersF'
 //import { followAc } from './../../../redux/redux-store'
-import { setUsersAC, followAC, unFollowAC, setUsersCurrentAC, toggleIsFollowing, setTotalUsersCount} from '../../../redux/users-reducer'
+import { follow, unFollow, setUsersCurrent, getUsersThunkCreator, unfollowAcceptThunkCreator, followAcceptThunkCreator} from '../../../redux/users-reducer'
 //import { AddDataAC } from '../../../redux/users-reducer'
-import * as axios from 'axios' //how to use axios ?? Good question, ok i can tell you how to make that 
+//import * as axios from 'axios' //how to use axios ?? Good question, ok i can tell you how to make that 
 //import preloader from '../../../assets'
-import { usersAPI } from './../../../api/api'
+//import { usersAPI } from './../../../api/api'
 
 
 
@@ -15,17 +15,17 @@ class GetUsersContainer extends React.Component {  // 62 make
     
 
     componentDidMount() {
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+        /* usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
             this.props.setUsers(data.items)
-        })
+        }) */
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
     }
 
 
     onPageChanged = (currentPageProps) => {
-        this.props.setUsersCurrentPage(currentPageProps);
-        //axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPageProps}&count=${this.props.pageSize}`, {withCredentials: true}).then(response => {this.props.setUsers(response.data.items)})
-        usersAPI.getUsers(currentPageProps, this.props.pageSize).then(data => {this.props.setUsers(data.items)})
         //this.props.setUsersCurrentPage(currentPageProps);
+        //usersAPI.getUsers(currentPageProps, this.props.pageSize).then(data => {this.props.setUsers(data.items)})
+        this.props.getUsersThunkCreator(currentPageProps, this.props.pageSize)
     }
 
     
@@ -37,12 +37,14 @@ class GetUsersContainer extends React.Component {  // 62 make
             {/* {this.isFetching ? <img src = {preloader}/> : null} */}
         
             <GetUsersF 
-            state = {this.props.state}
-            follow = {this.props.follow}
-            unFollow = {this.props.unFollow}
-            toggleIsFollowing = {this.props.toggleIsFollowing}
-            onPageChanged = {this.onPageChanged}/>
-
+                state = {this.props.state}
+                //follow = {this.props.follow}
+                //unFollow = {this.props.unFollow}
+                toggleIsFollowing = {this.props.toggleIsFollowing}
+                onPageChanged = {this.onPageChanged}
+                unfollowAcceptThunkCreator = {this.props.unfollowAcceptThunkCreator}
+                followAcceptThunkCreator = {this.props.followAcceptThunkCreator}
+            />
                 </> 
     }
 }
@@ -86,10 +88,13 @@ let mapStateToProps = (store) => {
 
 export default connect (mapStateToProps,
     {
-        follow: followAC,
-        unFollow: unFollowAC,
-        setUsers: setUsersAC,
-        setUsersCurrentPage: setUsersCurrentAC,
+        follow: follow,
+        unFollow: unFollow,
+        //setUsers: setUsers,
+        setUsersCurrentPage: setUsersCurrent,
+        getUsersThunkCreator: getUsersThunkCreator,
+        unfollowAcceptThunkCreator: unfollowAcceptThunkCreator,
+        followAcceptThunkCreator: followAcceptThunkCreator
     }
 ) (GetUsersContainer)
 

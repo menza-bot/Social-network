@@ -1,4 +1,4 @@
-
+import  { usersAPI } from './../api/api'
 
 //let initialstate1 = {
 //    listOfUsers: [
@@ -85,7 +85,7 @@ const usersReducer = (state = initialstate, action) => {
 
 
 
-export const followAC = (userID) => {
+export const follow = (userID) => {
     
     return {
         type: 'FOLLOW',
@@ -94,7 +94,7 @@ export const followAC = (userID) => {
 }
 
 
-export const unFollowAC = (userID) => {
+export const unFollow = (userID) => {
     return {
         type: 'UNFOLLOW',
         userID
@@ -102,14 +102,14 @@ export const unFollowAC = (userID) => {
 }
 
 
-export const setUsersAC = (users) => {
+export const setUsers = (users) => {
     return {
         type: 'SET-USERS',
         users
     }
 }
 
-export const setUsersCurrentAC = (currentPageProps) => {
+export const setUsersCurrent = (currentPageProps) => {
     return {
         type: 'SET-USERS-CURRENTPAGE',
         currentPageProps
@@ -118,10 +118,40 @@ export const setUsersCurrentAC = (currentPageProps) => {
 
 
 
+export const followAcceptThunkCreator = (userID) => {
+    return (dispatch) => {
+        usersAPI.makeUsersFollowed(userID).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(follow(userID))
+            }
+            //props.toggleIsFollowing(false)
 
-const getUsersThunk = (dispatch) => {
-    
-} 
+        }) 
+    }
+}
+
+export const unfollowAcceptThunkCreator = (userID) => {
+    return (dispatch) => {
+        usersAPI.makeUsersUnfollowed(userID).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(unFollow(userID))
+            }
+            //props.toggleIsFollowing(false)
+        })
+    }
+}
+
+
+export const getUsersThunkCreator = (currentPage, pageSize) => { // here you also need to add toggle and loader 
+    return (dispatch) => {
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(setUsers(data.items))
+        }) 
+    }
+
+}
+
+
 
 
 
