@@ -1,23 +1,15 @@
 import React from 'react' 
 import Header from './Header'
-import * as axios from 'axios'
-import {setUserData} from '../../redux/auth-reducer'
+import {AuthThunkCreator, setUserData} from '../../redux/auth-reducer'
 import { connect } from 'react-redux'
+
 
 
 
 class HeaderContainer extends React.Component {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-            withCredentials: true
-        }).then(response => {
-            if (response.data.resultCode === 0) {
-                let {id, email, login} = response.data.data //To refresh it in your mind visit learn.javascript.ru
-                this.props.setUserData(id, email, login)
-            }
-        }) // how to get a new this kind...
-    
+        this.props.AuthThunkCreator()   // Thanks to thunk we can make axios request without Header component 
     }
     
     render() {
@@ -33,6 +25,6 @@ let mapStateToProps = (state) => {
 }
 
 
-export default connect (mapStateToProps, {setUserData}) (HeaderContainer)
+export default connect (mapStateToProps, {setUserData: setUserData, AuthThunkCreator: AuthThunkCreator}) (HeaderContainer)
 
 

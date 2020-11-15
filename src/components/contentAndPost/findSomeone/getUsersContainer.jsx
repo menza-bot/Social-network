@@ -8,7 +8,7 @@ import { follow, unFollow, setUsersCurrent, getUsersThunkCreator, unfollowAccept
 //import * as axios from 'axios' //how to use axios ?? Good question, ok i can tell you how to make that 
 //import preloader from '../../../assets'
 //import { usersAPI } from './../../../api/api'
-
+import { compose } from 'redux'
 
 
 class GetUsersContainer extends React.Component {  // 62 make 
@@ -51,7 +51,6 @@ class GetUsersContainer extends React.Component {  // 62 make
 
 
 let mapStateToProps = (store) => {
-    console.log(store);
     return {
         state: store,
         currentPage: store.usersPage.currentPage,
@@ -86,7 +85,7 @@ let mapStateToProps = (store) => {
 
 
 
-export default connect (mapStateToProps,
+/* export default connect (mapStateToProps,
     {
         follow: follow,
         unFollow: unFollow,
@@ -96,7 +95,19 @@ export default connect (mapStateToProps,
         unfollowAcceptThunkCreator: unfollowAcceptThunkCreator,
         followAcceptThunkCreator: followAcceptThunkCreator
     }
-) (GetUsersContainer)
+) (GetUsersContainer) 
+ */
+
+export default compose ( connect(mapStateToProps,
+    {
+        follow: follow,
+        unFollow: unFollow,
+        setUsersCurrentPage: setUsersCurrent,
+        getUsersThunkCreator: getUsersThunkCreator,
+        unfollowAcceptThunkCreator: unfollowAcceptThunkCreator,
+        followAcceptThunkCreator: followAcceptThunkCreator
+    }
+)) (GetUsersContainer) 
 
 
 //console.log(GetUsersContainer);

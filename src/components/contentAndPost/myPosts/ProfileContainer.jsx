@@ -1,42 +1,64 @@
 import React from 'react' 
 import Proflie from './Profile'
-import * as axios from 'axios'
-import {connect} from 'react-redux'
-import {setUserProfile} from '../../../redux/profile-reducer'
-import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { setUserProfile } from '../../../redux/profile-reducer'
+import { Redirect, withRouter } from 'react-router-dom'
+//import { usersAPI } from '../../../api/api'
+import { getProfileThunkCreator, getStatusThunkCreator, updateStatusThunkCreator} from '../../../redux/profile-reducer'
+import { withAuthRedirect } from '../../../HOC/withAuthRedirect'
+import { compose } from 'redux'
 
 class ProflieContainer extends React.Component {
     
     
     componentDidMount() {
-        let userId = this.props.match.params.userId
-        if (!userId) {
-            userId = 2
+        let userCode = this.props.match.params.userId
+        console.log(this.props);
+        if (!userCode) {
+            userCode = 2
         }
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId).then(response => {
-        this.props.setUserProfile(response.data)
-        })
+        this.props.getProfileThunkCreator(userCode)
+        
+        setTimeout(() => {
+            this.props.getStatusThunkCreator(userCode)
+        }, 1000)
+
+        //this.props.getStatusThunkCreator(userCode)
     }
     
     
     render () {
+        if (this.props.isAuth === false) return <Redirect to = '/login' /> //It's redirect 
         return (
-            <Proflie {...this.props} profile = {this.props.profile}/> //import props from ProfileContainer to Profile
+            <Proflie {...this.props} profile = {this.props.profile} status = {this.props.status} updateStatus = {this.props.updateStatusThunkCreator} /> //import props from ProfileContainer to Profile
         )
     }
 }
 
 let mapStateToProps = (state) => {
     return {
-        profile: state.profilePage.profile
+        profile: state.profilePage.profile,
+        //isAuth: state.auth.isAuth
+        status: state.profilePage.status
     }
 }
 
+export default compose (
+    connect (mapStateToProps, {
+        setUserProfile, 
+        getProfileThunkCreator: getProfileThunkCreator,
+        getStatusThunkCreator: getStatusThunkCreator,
+        updateStatusThunkCreator: updateStatusThunkCreator
+    }),
+    withRouter,
+    withAuthRedirect
+) (ProflieContainer)   // using compose to less code and make this one more readable
 
-let withUrlDataContainerComponent = withRouter(ProflieContainer)
+/* let AuthRedirectComponent = withAuthRedirect(ProflieContainer)
+let withUrlDataContainerComponent = withRouter(AuthRedirectComponent)
 
 
-export default connect (mapStateToProps, {setUserProfile}) (withUrlDataContainerComponent)
+export default connect (mapStateToProps, {setUserProfile, getProfileThunkCreator: getProfileThunkCreator}) (withUrlDataContainerComponent) */
 
 
 

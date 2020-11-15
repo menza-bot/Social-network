@@ -1,10 +1,11 @@
 import './PostAdder.css'
 import React from 'react'
 //import {addPostActionCreator, changeNewPostTextActionCreator} from './../../../redux/profile-reducer'
+import {Field, reduxForm} from 'redux-form'
+import { onSubmit } from '../../../redux/auth-reducer'
 
 
-
-export default function PostAdder(props) {
+export const PostAdderForm = (props) => {
 
     
 
@@ -12,13 +13,7 @@ export default function PostAdder(props) {
         return <div>{item.message}</div>
     })
 
-    //console.log(props.state.posts[0]);
-
-    //let one = props.state.posts[0]
-
     let TextOfNewPostElement = React.createRef()
-
-    //debugger
 
     let addPostOnClick = () => {
         let newText = TextOfNewPostElement.current.value;
@@ -26,8 +21,6 @@ export default function PostAdder(props) {
         TextOfNewPostElement.current.value = ''
 
     }
-    
-    //debugger
 
     function onChangeWatcher() {
         let newValue = TextOfNewPostElement.current.value;
@@ -36,13 +29,27 @@ export default function PostAdder(props) {
         props.changeNewPostText(newValue)
     }
 
-    //console.log(props.state);
-
     return(
-        <div className = 'wrapper-post-adder'>
+        <form className = 'wrapper-post-adder' onSubmit = {props.handleSubmit}>
             <div className="stupidPosts">{stupidPosts}</div>                                                                                       
             <textarea value = {props.state.profilePage.newPostText.value} ref = {TextOfNewPostElement} onChange = {onChangeWatcher} />
             <div className = "adder"><button onClick = {addPostOnClick} className = "adder-button">make a post</button></div>
-        </div>
+        </form>
     )
 }
+
+export const PostAdder = (props) => {
+    
+    const onSubmit = (formData) => {
+        console.log(formData);
+    }
+    
+    return(
+        <PostAdderForm  state = {props.state}
+        changeNewPostText = {props.changeNewPostText}
+        addPost = {props.addPost} 
+        onSubmit = {onSubmit}
+        />
+    )
+}
+

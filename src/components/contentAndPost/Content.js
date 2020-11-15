@@ -7,7 +7,7 @@ import News from './news/News'
 import Music from './music/Music'
 import Settings from './settings/Settings'
 import Findsomeone from './findSomeone/findSomeone'
-
+import {MainLogin} from './../Login/Login'
 
 
 
@@ -21,6 +21,8 @@ export default function Content() {
             <Route path = '/music' component = {Music} />
             <Route path = '/settings' component = {Settings} />
             <Route path = '/findSomeone' render = {() => <Findsomeone />} />
+            <Route path = '/login' render = {() => <MainLogin />} /> 
         </div>
     )
+    //need to make put this component (Loginreduxfrom) to Login.js file
 }
