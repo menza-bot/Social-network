@@ -1,7 +1,7 @@
 //import './PostAdder.css'
 //import React from 'react'
 import {addPostActionCreator, changeNewPostTextActionCreator} from '../../../redux/profile-reducer'
-import {PostAdder} from './PostAdder'
+import {PostAdder, PostAdderForm} from './PostAdder'
 import { connect } from 'react-redux'
 
 //import StoreContext from '../../../storeContext'
@@ -90,6 +90,6 @@ let mapDispatchToProps = (dispatch) => {
 
 
 
-const PostAdderContainer = connect(mapStateToProps, mapDispatchToProps) (PostAdder)
+const PostAdderContainer = connect(mapStateToProps, mapDispatchToProps) (PostAdderForm)
 
 export default PostAdderContainer
