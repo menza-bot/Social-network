@@ -12,7 +12,7 @@ const Header = (props) => {
     
     return (
         <div className="header">
-            <HeaderLogin isAuth = {props.isAuth} login = {props.login} />
+            <HeaderLogin  LogoutThunkCreator = {props.LogoutThunkCreator} isAuth = {props.isAuth} login = {props.login} />
             {/* <IconContext.Provider value = {{className: 'github', size: '35px'}}>
                 <div><Fa500Px /></div>
             </IconContext.Provider> */}  {/* this is our icon that we need to style */}

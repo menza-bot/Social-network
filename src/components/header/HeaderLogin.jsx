@@ -4,16 +4,18 @@ import './HeaderLogin.css'
 
 
 const HeaderLogin = (props) => {
-    
-    let login = props.login
-    let isAuth = props.isAuth
 
     return(
         <div className="login-block">
-            { isAuth ? login :
-            <NavLink to = {'/login'}>
-                log in
-            </NavLink>
+            {  props.isAuth 
+            ?
+                
+                <div>{props.login} - <button onClick = {props.LogoutThunkCreator} >log out</button></div>
+                
+            : 
+                <NavLink to = {'/login'}>
+                    log in
+                </NavLink> 
             }
         </div>
     )

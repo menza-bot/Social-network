@@ -1,23 +1,18 @@
 import { stopSubmit } from 'redux-form'
 import { authAPI } from '../api/api'
-
+import { AuthThunkCreator } from './auth-reducer'
 
 let initialState = {
-    userId: null,
-    email: null,
-    login: null,
-    logout: null,
-    isAuth: false,
-    password: null
+    initialized: false
 }
 
 
-const authReducer = (state = initialState, action) => {
+const contentReducer = (state = initialState, action) => {
     switch(action.type) {
-        case 'SET-USER-DATA': {
+        case 'INITIALIZED-SUCCESS': {
             return {
                 ...state,
-                ...action.data
+                initialized: true 
             } 
         }
         case 'ON-SUBMIT': {
@@ -35,24 +30,19 @@ const authReducer = (state = initialState, action) => {
 }
 
 
-export let setUserData = (userId, email, login, isAuth) => {
+export let initializedSuccessfully = () => {
     return {
-        type: 'SET-USER-DATA',
-        data: {
-            userId,
-            email,
-            login,
-            isAuth
-        }
+        type: 'INITIALIZED-SUCCESS'
     }
 }
 
-export let onSubmit = (email, password) => {
-    return {
-        type: 'ON-SUBMIT',
-        email,
-        password
-    }
+export let initializeContent = () => (dispatch) => {
+    
+    let promise = dispatch(AuthThunkCreator())
+    Promise.all([promise]).then(() => {
+        dispatch(initializedSuccessfully())
+    })
+    //dispatch(initializedSuccessfully())
 }
 
 export let setLoginData = (email, password) => {
@@ -65,7 +55,7 @@ export let setLoginData = (email, password) => {
     }
 } 
 
-export const AuthThunkCreator = () => {
+/* export const AuthThunkCreator = () => {
     return (dispatch) => {
         authAPI.getAuth().then(response => {
             if (response.data.resultCode === 0) {
@@ -73,12 +63,10 @@ export const AuthThunkCreator = () => {
                 dispatch(setUserData(id, email, login, true))
             }
         })
-        return 'hey'
     }
-    
-}
+} */
 
-export const LoginThunkCreator = (email, password) => 
+/* export const LoginThunkCreator = (email, password) => 
     (dispatch) => {
         authAPI.getLogin(email, password).then(response => {
             if (response.data.resultCode ===  0) {
@@ -90,10 +78,10 @@ export const LoginThunkCreator = (email, password) =>
             }
         }) // the teaser and how to make this king of prepand and how to make this kind of meaning and what to do else 
     }
+ */
 
 
-
-export const LogoutThunkCreator = () => {
+/* export const LogoutThunkCreator = () => {
     return (dispatch) => {
         authAPI.getLogout().then(response => {
             if (response.data.resultCode === 0) {
@@ -101,7 +89,7 @@ export const LogoutThunkCreator = () => {
             }
         })
     }
-}
+} */
 
 /* export const LoginThunkCreator = () => {
     return(dispatch) => {
@@ -114,4 +102,4 @@ export const LogoutThunkCreator = () => {
     }
 }   */
 
-export default authReducer
+export default contentReducer

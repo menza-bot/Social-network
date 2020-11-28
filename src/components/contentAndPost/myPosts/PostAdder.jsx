@@ -1,43 +1,44 @@
-import './PostAdder.css'
+
 import React from 'react'
-//import {addPostActionCreator, changeNewPostTextActionCreator} from './../../../redux/profile-reducer'
 import {Field, reduxForm} from 'redux-form'
-import { onSubmit } from '../../../redux/auth-reducer'
+import { TextArea } from '../../common/FormsController'
+//import { onSubmit } from '../../../redux/auth-reducer'
+
+import { required, maxLengthThunkCreator } from './../../../redux/utilits/validators/validators'
 
 
 
 
+export let PostAdder = React.memo(props => {
 
-
-
-export const PostAdderForm = (props) => {
+    let addPostOnClick = (values) => {
+        props.addPost(values.newPostText)
+        values.newPostText = ''
+    }
 
     let stupidPosts = props.state.profilePage.posts.map((item) => {
         return <div>{item.message}</div>
     })
 
-    let TextOfNewPostElement = React.createRef()
+    return (
 
-    let addPostOnClick = () => {
-        let newText = TextOfNewPostElement.current.value;
-        props.addPost(newText)
-        TextOfNewPostElement.current.value = ''
+        <PostAdderFormForClient onSubmit = { addPostOnClick } stupidPosts = {stupidPosts} /> // ass
+    )
+})
 
-    }
+const maxLength20 = maxLengthThunkCreator(20)
 
-    function onChangeWatcher() {
-        let newValue = TextOfNewPostElement.current.value;
-        props.changeNewPostText(newValue)
-    }
+export let PostAdderForm = (props) => {
+    
+    
 
     return(
-        <div className = 'wrapper-post-adder' onSubmit = {props.handleSubmit}>
-            <div className="stupidPosts">{stupidPosts}</div>                                                                                       
-            <textarea value = {props.state.profilePage.newPostText.value} ref = {TextOfNewPostElement} onChange = {onChangeWatcher} />
-            <div className = "adder"><button onClick = {addPostOnClick} className = "adder-button">make a post</button></div>
-        </div>
+        <form className = 'wrapper-post-adder' onSubmit = {props.handleSubmit}>
+            <div className="stupidPosts">{props.stupidPosts}</div>  
+            <Field name = 'newPostText' placeholder = 'Type Something' component = {TextArea} validate = {[required, maxLength20]}/>
+            <div className = "adder"><button className = "adder-button">make a post</button></div> 
+        </form>
     )
 }
 
-
-
+let PostAdderFormForClient = reduxForm({form: 'profileAddNewPostForm'}) (PostAdderForm)

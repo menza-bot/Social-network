@@ -9,26 +9,27 @@ import { withAuthRedirect } from '../../../HOC/withAuthRedirect'
 import { compose } from 'redux'
 
 class ProflieContainer extends React.Component {
-    
+
     
     componentDidMount() {
         let userCode = this.props.match.params.userId
-        console.log(this.props);
+        //console.log(this.props);
         if (!userCode) {
-            userCode = 2
+            userCode = this.props.userId  
+            if (!userCode) {
+                this.props.history.push('/login')
+            }
         }
         this.props.getProfileThunkCreator(userCode)
         
-        setTimeout(() => {
-            this.props.getStatusThunkCreator(userCode)
-        }, 1000)
-
+    
+        this.props.getStatusThunkCreator(userCode)
+        
         //this.props.getStatusThunkCreator(userCode)
     }
-    
-    
     render () {
-        if (this.props.isAuth === false) return <Redirect to = '/login' /> //It's redirect 
+        if (this.props.isAuth === false) return <Redirect to = '/login' /> //It's redirect
+        console.log("RENDER PROFILE");
         return (
             <Proflie {...this.props} profile = {this.props.profile} status = {this.props.status} updateStatus = {this.props.updateStatusThunkCreator} /> //import props from ProfileContainer to Profile
         )
@@ -36,10 +37,12 @@ class ProflieContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
+    console.log('mapStateToProps PROFILE');
     return {
         profile: state.profilePage.profile,
-        //isAuth: state.auth.isAuth
-        status: state.profilePage.status
+        isAuth: state.auth.isAuth,
+        status: state.profilePage.status,
+        userId: state.auth.userId
     }
 }
 

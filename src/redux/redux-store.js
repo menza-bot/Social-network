@@ -6,12 +6,14 @@ import usersReducer from './users-reducer'
 import thunkMiddleware from 'redux-thunk'
 //import { followAC, unfollowAC, setUsersAC } from './users-reducer'
 import {reducer as formReducer} from 'redux-form'
+import contentReducer from './component-reducer'
 
 let reducers = combineReducers({
     usersPage: usersReducer, 
     profilePage: profileReducer,
     form: formReducer,
-    auth: authReducer
+    auth: authReducer,
+    content: contentReducer
     
 })
 

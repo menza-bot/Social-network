@@ -38,7 +38,7 @@ let initialstate = {
     totalUsersCount: 25,
     pageSize: 5,
     currentPage: 1,
-    isFetching: true, // loading page
+    isFetching: false, // loading page
     followingInProgress: false // disabling page during ajax requesting
 }
 

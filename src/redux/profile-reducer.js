@@ -5,7 +5,6 @@ let initialState = {
         {id: 0, message: "What's up"}, 
         {id: 1, message: "How are you"}
     ],
-    newPostText:  {value:''},
     listOfNamesData : [
         {name: "Alex", id: 1}, 
         {name: "Mark", id: 2}, 
@@ -34,16 +33,12 @@ const profileReducer = (state = initialState, action) => {
                 id: 2, message: action.PostMessage
             }
             let stateCopy = {...state}
-            //console.log(stateCopy);
+            console.log(stateCopy);
             
             stateCopy.posts = [...state.posts]
             stateCopy.posts.push(somePost);
             return stateCopy 
-        }
-        case 'CHANGE-NEW-POST-TEXT': {
-            let stateCopy = {...state}
-            stateCopy.newPostText = action.newValue
-            return stateCopy
+
         }
         case 'SET-USER-PROFILE': {
             return {...state, profile: action.profile}
@@ -79,19 +74,14 @@ const profileReducer = (state = initialState, action) => {
     return state */
 }
 
-export const addPostActionCreator = (newText) => {
+export const addPostActionCreator = (newPostText) => {
     return {
         type: 'ADD-POST',
-        PostMessage: newText
+        PostMessage: newPostText
     }
 }
 
-export const changeNewPostTextActionCreator = (newValue) => {
-    return {
-        type: 'CHANGE-NEW-POST-TEXT', 
-        newValue: newValue
-    }
-}
+
 
 export const setUserProfile = (profile) => {
     return {

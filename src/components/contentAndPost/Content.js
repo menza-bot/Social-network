@@ -1,28 +1,61 @@
-import React from "react"
-import { Route } from "react-router-dom"
+import React, {Suspense} from "react"
+import { Route, withRouter } from "react-router-dom"
 import './../../styles/Content.css'
-import ProfileContainer from './myPosts/ProfileContainer'
-//import Dialog from './dialogs/Dialog'
-import News from './news/News'
 import Music from './music/Music'
 import Settings from './settings/Settings'
 import Findsomeone from './findSomeone/findSomeone'
-import {MainLogin} from './../Login/Login'
+import Login from './../Login/Login'
+import {LoginThunkCreator, LogoutThunkCreator, setUserData} from './../../redux/auth-reducer'
+//import {authAPI} from '../api/api'
+import {initializeContent} from '../../redux/component-reducer'
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+
+const ProfileContainer = React.lazy(() => import('./myPosts/ProfileContainer'))
+const News = React.lazy(() => import('./news/News'))
 
 
 
-export default function Content() {
+class Content extends React.Component {
+
+    componentDidMount() {
+        this.props.initializeContent()
+    } 
     
+    render() {
+
+    {   
+        if (!this.props.initialized) {
+            return <div>watiting</div>
+        }
+    }
     return (
         <div className="content">
-            <Route path = '/profile/:userId?' render = {() => <ProfileContainer />} />
+            <Route path = '/profile/:userId?' render = {() => <React.Suspense fallback = {<div>Loading...</div>}><ProfileContainer /></React.Suspense>} />
             {/*<Route path = '/dialogs' render = {() => <Dialog />} />*/}    
-            <Route path = '/news' component = {News} />
+            <Route path = '/news' render = {()=> <React.Suspense><News/></React.Suspense> } />
             <Route path = '/music' component = {Music} />
             <Route path = '/settings' component = {Settings} />
             <Route path = '/findSomeone' render = {() => <Findsomeone />} />
-            <Route path = '/login' render = {() => <MainLogin />} /> 
+            <Route path = '/login' render = {() => <Login />} /> 
         </div>
     )
+    }
     //need to make put this component (Loginreduxfrom) to Login.js file
 }
+
+const mapStateToProps = (state) => ({
+    initialized: state.content.initialized
+})
+
+
+export default compose(
+    withRouter,
+    connect 
+    (
+        mapStateToProps, { setUserData: setUserData,
+                initializeContent: initializeContent, 
+                LogoutThunkCreator: LogoutThunkCreator}
+    )
+    
+    ) (Content)

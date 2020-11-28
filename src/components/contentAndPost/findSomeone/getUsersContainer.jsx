@@ -9,6 +9,7 @@ import { follow, unFollow, setUsersCurrent, getUsersThunkCreator, unfollowAccept
 //import preloader from '../../../assets'
 //import { usersAPI } from './../../../api/api'
 import { compose } from 'redux'
+import { getCurretPage, getPageSize, getTotalUsersCount, getToggleIsFollowing, getUsers } from '../../../redux/selectors/users-selectors'
 
 
 class GetUsersContainer extends React.Component {  // 62 make 
@@ -32,12 +33,14 @@ class GetUsersContainer extends React.Component {  // 62 make
 
     
     render() {
-        return  <>   
+        return   <>   
 
             {/* {this.isFetching ? <img src = {preloader}/> : null} */}
-        
+            
             <GetUsersF 
-                state = {this.props.state}
+                users = {this.props.users}
+                totalUsersCount = {this.props.totalUsersCount}
+                pageSize = {this.props.pageSize}
                 //follow = {this.props.follow}
                 //unFollow = {this.props.unFollow}
                 toggleIsFollowing = {this.props.toggleIsFollowing}
@@ -50,38 +53,22 @@ class GetUsersContainer extends React.Component {  // 62 make
 }
 
 
-let mapStateToProps = (store) => {
+let mapStateToProps = (state) => {
     return {
-        state: store,
-        currentPage: store.usersPage.currentPage,
-        pageSize: store.usersPage.pageSize,
-        totalUsersCount: store.usersPage.totalUsersCount,
-        toggleIsFollowing: store.usersPage.toggleIsFollowing
+        users: getUsers(state),
+        currentPage: getCurretPage(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        toggleIsFollowing: getToggleIsFollowing(state)
     }
     
     
-}
+} 
 
 
 
 
-/* let mapDispatchToProps = (dispatch) => {
-    return {
-        
-        follow: (userID) => {
-            dispatch(followAC(userID))
-        },
-        unFollow: (userID) => {
-            dispatch(unFollowAC(userID))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        setUsersCurrentPage: (currentPageProps) => {
-            dispatch(setUsersCurrentAC(currentPageProps))
-        }
-    }
-} */
+
 
 
 

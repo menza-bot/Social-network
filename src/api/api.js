@@ -51,7 +51,12 @@ export const  authAPI = {
         return axiosInstance.get(`auth/me`)
     },
     getLogin(email, password) {
-        return axiosInstance.post(`auth/login`, {email: email, password: password})
+        return axiosInstance.post(`auth/login`, {email, password})
+    },
+
+    
+    getLogout() {
+        return axiosInstance.delete(`auth/login`)
     }
 }
 //axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPageProps}&count=${this.props.state.usersPage.pageSize}`).then(response => {this.props.setUsers(response.data.items)})

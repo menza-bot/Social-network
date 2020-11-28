@@ -8,9 +8,9 @@ import { NavLink } from 'react-router-dom'
     
     
     export default function GetUsersF(props) {
+        debugger
+        let pageCount = Math.ceil(props.totalUsersCount / props.pageSize) 
         
-        let pageCount = Math.ceil(props.state.usersPage.totalUsersCount / props.state.usersPage.pageSize) 
-
         let pages = []
 
         for (let i = 1; i <= pageCount; i++) {
@@ -25,12 +25,12 @@ import { NavLink } from 'react-router-dom'
             
             <span>
                 <div>
-                    {pages.map( item => <span onClick = {(e) => {props.onPageChanged(item)}}>{item}</span>)}
+                    {pages.map( item => { return <span onClick = {(e) => {props.onPageChanged(item)}}>{item}</span>})}
                 </div>
             </span>
             
             {
-            props.state.usersPage.users.map(u => 
+            props.users.map(u => 
                 <div key = {u.id}>
                     <div>
                         <NavLink to = {'/profile/' + u.id}><div>{u.name}</div></NavLink>

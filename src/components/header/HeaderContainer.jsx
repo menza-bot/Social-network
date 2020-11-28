@@ -1,6 +1,6 @@
 import React from 'react' 
 import Header from './Header'
-import {AuthThunkCreator, setUserData} from '../../redux/auth-reducer'
+import {AuthThunkCreator, LogoutThunkCreator, setUserData} from '../../redux/auth-reducer'
 import { connect } from 'react-redux'
 
 
@@ -8,12 +8,12 @@ import { connect } from 'react-redux'
 
 class HeaderContainer extends React.Component {
 
-    componentDidMount() {
+    /* componentDidMount() {
         this.props.AuthThunkCreator()   // Thanks to thunk we can make axios request without Header component 
-    }
+    } */
     
     render() {
-        return <Header  {...this.props} />
+        return <Header LogoutThunkCreator = {this.props.LogoutThunkCreator} {...this.props} />
     }
 }
 
@@ -25,6 +25,6 @@ let mapStateToProps = (state) => {
 }
 
 
-export default connect (mapStateToProps, {setUserData: setUserData, AuthThunkCreator: AuthThunkCreator}) (HeaderContainer)
+export default connect (mapStateToProps, {LogoutThunkCreator: LogoutThunkCreator}) (HeaderContainer)
 
 
