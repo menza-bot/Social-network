@@ -17,7 +17,7 @@ import { NavLink } from 'react-router-dom'
             pages.push(i) // this is what to make it to push into the array  
         }
 
-        //console.log(pages);
+        console.log(pages);
         
         return (
         
