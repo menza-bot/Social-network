@@ -1,6 +1,6 @@
 import React from 'react' 
 import Header from './Header'
-import {AuthThunkCreator, LogoutThunkCreator, setUserData} from '../../redux/auth-reducer'
+import {LogoutThunkCreator} from '../../redux/auth-reducer'
 import { connect } from 'react-redux'
 
 

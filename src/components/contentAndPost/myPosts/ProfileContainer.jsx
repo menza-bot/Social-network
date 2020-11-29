@@ -29,7 +29,6 @@ class ProflieContainer extends React.Component {
     }
     render () {
         if (this.props.isAuth === false) return <Redirect to = '/login' /> //It's redirect
-        console.log("RENDER PROFILE");
         return (
             <Proflie {...this.props} profile = {this.props.profile} status = {this.props.status} updateStatus = {this.props.updateStatusThunkCreator} /> //import props from ProfileContainer to Profile
         )
@@ -37,7 +36,6 @@ class ProflieContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-    console.log('mapStateToProps PROFILE');
     return {
         profile: state.profilePage.profile,
         isAuth: state.auth.isAuth,

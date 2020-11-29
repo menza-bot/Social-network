@@ -1,11 +1,11 @@
-import React, {Suspense} from "react"
+import React from "react"
 import { Route, withRouter } from "react-router-dom"
 import './../../styles/Content.css'
 import Music from './music/Music'
 import Settings from './settings/Settings'
 import Findsomeone from './findSomeone/findSomeone'
 import Login from './../Login/Login'
-import {LoginThunkCreator, LogoutThunkCreator, setUserData} from './../../redux/auth-reducer'
+import {LogoutThunkCreator, setUserData} from './../../redux/auth-reducer'
 //import {authAPI} from '../api/api'
 import {initializeContent} from '../../redux/component-reducer'
 import { connect } from 'react-redux'

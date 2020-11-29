@@ -30,9 +30,6 @@ class Status extends React.Component {
         if (PrevState.status !== this.state.status) {
             this.setState({status: this.state.status})
         }
-        let s = this.state
-        let p = this.props
-        console.log('h')
     }
     
     render() {

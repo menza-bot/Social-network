@@ -1,6 +1,6 @@
 //import './PostAdder.css'
 //import React from 'react'
-import {addPostActionCreator, changeNewPostTextActionCreator} from '../../../redux/profile-reducer'
+import {addPostActionCreator} from '../../../redux/profile-reducer'
 import {PostAdder} from './PostAdder'
 import { connect } from 'react-redux'
 
