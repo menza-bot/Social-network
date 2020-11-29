@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/contentAndPost/news/News.jsx"],"names":["News","className"],"mappings":"oGAAA,mEAIe,SAASA,IACpB,OACI,yBAAKC,UAAU","file":"static/js/4.d4e81e0d.chunk.js","sourcesContent":["import React from 'react'\r\n\r\n\r\n\r\nexport default function News() {\r\n    return (\r\n        <div className=\"news\"></div>\r\n    )\r\n}"],"sourceRoot":""}

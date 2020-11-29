@@ -1,0 +1,1 @@
+{"version":3,"sources":["Profile.css"],"names":[],"mappings":"AAAA,SACI,gBAAiB,CACjB,aAAyB,CACzB,eAAgB,CAChB,iBAAkB,CAClB,kBACJ","file":"3.ef70015f.chunk.css","sourcesContent":[".profile {\r\n    font-size: 1.4rem;\r\n    color: rgb(107, 107, 107);\r\n    margin-top: 45px;\r\n    margin-left: 460px;\r\n    margin-bottom: 45px;\r\n}"]}
