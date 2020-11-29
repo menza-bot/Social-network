@@ -1,7 +1,7 @@
 //import * as axios from 'axios'
 import React from 'react' 
 import { NavLink } from 'react-router-dom'
-
+//import '../../../assets/images'
 
 
 
@@ -33,7 +33,12 @@ import { NavLink } from 'react-router-dom'
             props.users.map(u => 
                 <div key = {u.id}>
                     <div>
-                        <NavLink to = {'/profile/' + u.id}><div>{u.name}</div></NavLink>
+                        <NavLink to = {'/profile/' + u.id}>
+                            <div>
+                                {u.name}
+                            </div>
+                            <img src="" alt=""/>
+                        </NavLink>
                     </div>
                     <div>
                         {
