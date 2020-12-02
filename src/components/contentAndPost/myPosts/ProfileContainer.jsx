@@ -4,14 +4,14 @@ import { connect } from 'react-redux'
 import { setUserProfile } from '../../../redux/profile-reducer'
 import { Redirect, withRouter } from 'react-router-dom'
 //import { usersAPI } from '../../../api/api'
-import { getProfileThunkCreator, getStatusThunkCreator, updateStatusThunkCreator} from '../../../redux/profile-reducer'
+import { getProfileThunkCreator, savePhotoThunkCreator, getStatusThunkCreator, updateStatusThunkCreator} from '../../../redux/profile-reducer'
 import { withAuthRedirect } from '../../../HOC/withAuthRedirect'
 import { compose } from 'redux'
 
 class ProflieContainer extends React.Component {
 
     
-    componentDidMount() {
+    refreshProfile() {
         let userCode = this.props.match.params.userId
         //console.log(this.props);
         if (!userCode) {
@@ -27,10 +27,21 @@ class ProflieContainer extends React.Component {
         
         //this.props.getStatusThunkCreator(userCode)
     }
-    render () {
+
+    componentDidMount() {
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps, preState) {
+        if (this.props.match.params.userId !== prevProps.match.params.userId) {
+            this.refreshProfile()
+        }
+    }   
+
+    render() {
         if (this.props.isAuth === false) return <Redirect to = '/login' /> //It's redirect
         return (
-            <Proflie {...this.props} profile = {this.props.profile} status = {this.props.status} updateStatus = {this.props.updateStatusThunkCreator} /> //import props from ProfileContainer to Profile
+            <Proflie {...this.props} savePhoto = {this.props.savePhotoThunkCreator} isOwner = {!this.props.match.params.userId} profile = {this.props.profile} status = {this.props.status} updateStatus = {this.props.updateStatusThunkCreator} /> //import props from ProfileContainer to Profile
         )
     }
 }
@@ -47,6 +58,7 @@ let mapStateToProps = (state) => {
 export default compose (
     connect (mapStateToProps, {
         setUserProfile, 
+        savePhotoThunkCreator: savePhotoThunkCreator,
         getProfileThunkCreator: getProfileThunkCreator,
         getStatusThunkCreator: getStatusThunkCreator,
         updateStatusThunkCreator: updateStatusThunkCreator

@@ -46,6 +46,9 @@ const profileReducer = (state = initialState, action) => {
         case 'SET-STATUS': {
             return {...state, status: action.status}
         }
+        case 'SET-PHOTO': {
+            return {...state, profile: {...state.profile, photos: action.photos}}
+        }
         default: 
             return state
     }
@@ -97,6 +100,13 @@ export const setStatus = (status) => {
     }
 }
 
+export const setPhoto = (file) => {
+    return {
+        type: 'SET-PHOTO',
+        file
+    }
+}
+
 export const getProfileThunkCreator = (userId) => 
     (dispatch) => {
         usersAPI.getProfile(userId).then(response => {
@@ -120,6 +130,17 @@ export const updateStatusThunkCreator = (status) =>
             }
         })
     }
+
+export const savePhotoThunkCreator = (file) => 
+    (dispatch) => {
+        profileAPI.savePhoto(file).then(response => {
+            if (response.data.resultCode === 0)
+            {
+                dispatch(setPhoto(response.data.data.photos))
+            }
+        })
+    }
+
 
 
 

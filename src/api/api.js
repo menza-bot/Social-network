@@ -1,5 +1,6 @@
 
 import * as axios from 'axios'
+import { Form } from 'redux-form'
 //import userId from './../components/contentAndPost/myPosts/ProfileContainer'
 
 //const baseUrl = `https://social-network.samuraijs.com/api/1.0/`
@@ -42,8 +43,12 @@ export const profileAPI = {
     },
     updateStatus(status) {
         return axiosInstance.put(`profile/status`, {status: status})
+    },
+    savePhoto(file) {
+        let formData = new FormData()
+        formData.append('image', file)
+        return axiosInstance.put(`profile/photo`, formData, {headers: {'Content-Type': 'multipart/form-data'}})
     }
-
 }
 
 export const  authAPI = {

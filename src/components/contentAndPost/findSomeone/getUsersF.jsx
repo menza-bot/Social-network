@@ -2,8 +2,8 @@
 import React from 'react' 
 import { NavLink } from 'react-router-dom'
 //import '../../../assets/images'
-
-
+import icon from "./../../../assets/item-icon.png"
+import './getUsers.css'
 
     
     
@@ -17,7 +17,7 @@ import { NavLink } from 'react-router-dom'
             pages.push(i) // this is what to make it to push into the array  
         }
 
-        //console.log(pages);
+        
         
         return (
         
@@ -32,6 +32,9 @@ import { NavLink } from 'react-router-dom'
             {
             props.users.map(u => 
                 <div key = {u.id}>
+                    <div>
+                        <img src= {icon || props.users.photos.small} alt="" className = 'image-icon-users'/>
+                    </div>
                     <div>
                         <NavLink to = {'/profile/' + u.id}>
                             <div>

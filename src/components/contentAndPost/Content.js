@@ -24,13 +24,13 @@ class Content extends React.Component {
     
     render() {
 
-    {   
-        if (!this.props.initialized) {
-            return <div>watiting</div>
+        {   
+            if (!this.props.initialized) {
+                return <div>watiting</div>
+            }
         }
-    }
-    return (
-        <div className="content">
+        return (
+            <div className="content">
             <Route path = '/profile/:userId?' render = {() => <React.Suspense fallback = {<div>Loading...</div>}><ProfileContainer /></React.Suspense>} />
             {/*<Route path = '/dialogs' render = {() => <Dialog />} />*/}    
             <Route path = '/news' render = {()=> <React.Suspense><News/></React.Suspense> } />
@@ -38,8 +38,8 @@ class Content extends React.Component {
             <Route path = '/settings' component = {Settings} />
             <Route path = '/findSomeone' render = {() => <Findsomeone />} />
             <Route path = '/login' render = {() => <Login />} /> 
-        </div>
-    )
+            </div>
+        )
     }
     //need to make put this component (Loginreduxfrom) to Login.js file
 }
