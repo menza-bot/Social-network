@@ -2,7 +2,7 @@ import React from "react"
 import './Profile.css'
 //import PostAdder from './PostAdder'
 import PostAdderContainer from "./PostAdderContainer"
-import ProfileInfo from './ProfileInfo'
+import {ProfileInfo} from './ProfileInfo'
 
 
 export default function Profile(props) {

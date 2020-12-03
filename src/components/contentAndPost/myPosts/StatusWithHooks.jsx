@@ -29,7 +29,7 @@ const StatusWithHooks = (props) => {
             <div>
                 {!editMode &&
                 <div>
-                    <span onDoubleClick = {activateEditing}>{props.status}</span>
+                    <span onDoubleClick = {activateEditing}>Status:{ props.status}</span>
                 </div>
                 }    
                 {editMode && <div>
