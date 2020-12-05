@@ -64,4 +64,12 @@ export const  authAPI = {
         return axiosInstance.delete(`auth/login`)
     }
 }
+
+
+export const securityAPI = {
+    getCaptcha() {
+        return axiosInstance.get(`security/get-captcha-url`)
+    }
+}
+
 //axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPageProps}&count=${this.props.state.usersPage.pageSize}`).then(response => {this.props.setUsers(response.data.items)})

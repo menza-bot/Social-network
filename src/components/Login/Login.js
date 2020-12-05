@@ -58,7 +58,8 @@ const Login = (props) => {
 
 export const mapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        captchaUrl: state.auth.captchaUrl
     }
 } 
 

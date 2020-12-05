@@ -18,11 +18,13 @@ export const ProfileInfo = (props) => {
 
     return (
         <div className = 'main-block'>
-            {   
+            {/* {   
                 editValue 
                     ? <ProfileDataForm />
                     : <ProfileData editProfile = {() => {editing(true)}} savePhoto = {props.savePhoto} profile = {props.profile} isOwner = {props.isOwner} status = {props.status} updateStatus = {props.updateStatus} /> 
-            }
+            } */}
+
+            <ProfileData editProfile = {() => {editing(true)}} savePhoto = {props.savePhoto} profile = {props.profile} isOwner = {props.isOwner} status = {props.status} updateStatus = {props.updateStatus}/>
         </div>
     ) 
 
@@ -46,17 +48,15 @@ export const ProfileInfo = (props) => {
         return (
             <div className = 'main-block'>
                 <div>
-                    <img alt = '' src={props.profile.photos.small } className = 'image-icon-profile' />
+                    <img alt = '' src={props.profile.photos.large } className = 'image-icon-profile' />
                     {props.isOwner && <input onChange = {mainPhotoSelected} type = 'file'/>}
                 </div>
-                
-                <button onClick = {props.editProfile}>Tap here</button>
 
                 <div>
                     Full name: {props.profile.fullName}
                 </div>
                 <div>
-                    About me: {props.profile.aboutMe}
+                    About me: {props.profile.aboutMe}  
                 </div>
                 <div>
                     Looking for a job: {props.lookingForAJobDescription ? 'yes' : 'no'}
@@ -72,26 +72,6 @@ export const ProfileInfo = (props) => {
         ) 
     }
 
-    
-    
-    export const ProfileDataForm = () => {
-        return (
-            <form action="">
-                this is form for edit your profile
-            </form>
-        )
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     

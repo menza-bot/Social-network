@@ -12,7 +12,7 @@ export const TextArea = ({input, meta, ...props}) => {
 }
 
 
-/* export const Input = ({input, meta, ...props}) => {
+export const Input = ({input, meta, ...props}) => {
     return(
         <div className = {styles.formControl + ' ' + styles.error}>
             <input {...input} {...props} />
@@ -20,4 +20,3 @@ export const TextArea = ({input, meta, ...props}) => {
         </div>
     )
 }
- */

@@ -1,5 +1,5 @@
-import { stopSubmit } from 'redux-form'
-import { authAPI } from '../api/api'
+import { resetSection, stopSubmit } from 'redux-form'
+import { authAPI, securityAPI } from '../api/api'
 
 
 let initialState = {
@@ -8,7 +8,8 @@ let initialState = {
     login: null,
     logout: null,
     isAuth: false,
-    password: null
+    password: null,
+    captchaUrl: null
 }
 
 
@@ -65,6 +66,15 @@ export let setLoginData = (email, password) => {
     }
 } 
 
+export let getCaptchaSuccess = (captchaUrl) => {
+    return {
+        type: 'GET-CAPTCHA-SUCCESS',
+        captchaUrl
+    }
+}
+    
+
+
 export const AuthThunkCreator = () => {
     return (dispatch) => {
         authAPI.getAuth().then(response => {
@@ -84,7 +94,13 @@ export const LoginThunkCreator = (email, password) =>
             if (response.data.resultCode ===  0) {
                 dispatch(AuthThunkCreator())
             }
+            
             else {
+
+                if (response.data.resultCode === 10) {
+                    dispatch(CaptchaThunkCreator())
+                }
+
                 let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error"
                 dispatch(stopSubmit('login', {_error: message})) // stopSubmit how to make this kind of prepand and what to do 
             }
@@ -99,6 +115,16 @@ export const LogoutThunkCreator = () => {
             if (response.data.resultCode === 0) {
                 dispatch(setUserData(null, null, null, false))
             }
+        })
+    }
+}
+
+
+export const CaptchaThunkCreator = () => {
+    return (dispatch) => {
+        securityAPI.getCaptcha().then(response => {
+                const captchaUrl = response.data.url
+                dispatch(getCaptchaSuccess(captchaUrl))
         })
     }
 }

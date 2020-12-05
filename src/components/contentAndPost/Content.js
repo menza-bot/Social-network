@@ -31,6 +31,7 @@ class Content extends React.Component {
         }
         return (
             <div className="content">
+            <Route exact path = '/' render = {() => <React.Suspense fallback = {<div>Loading...</div>}><ProfileContainer /></React.Suspense>} />
             <Route path = '/profile/:userId?' render = {() => <React.Suspense fallback = {<div>Loading...</div>}><ProfileContainer /></React.Suspense>} />
             {/*<Route path = '/dialogs' render = {() => <Dialog />} />*/}    
             <Route path = '/news' render = {()=> <React.Suspense><News/></React.Suspense> } />
@@ -38,6 +39,7 @@ class Content extends React.Component {
             <Route path = '/settings' component = {Settings} />
             <Route path = '/findSomeone' render = {() => <Findsomeone />} />
             <Route path = '/login' render = {() => <Login />} /> 
+            {/* <Route path = '*' render = {() => {return <div>404 NOT FOUND</div>}} /> */}
             </div>
         )
     }

@@ -12,7 +12,7 @@ class ProflieContainer extends React.Component {
 
     
     refreshProfile() {
-        let userCode = this.props.match.params.userId
+        let userCode = this.props.match.params.userId  //we add match from WithRouter
         //console.log(this.props);
         if (!userCode) {
             userCode = this.props.userId  
