@@ -41,7 +41,7 @@ class ProflieContainer extends React.Component {
     render() {
         if (this.props.isAuth === false) return <Redirect to = '/login' /> //It's redirect
         return (
-            <Proflie {...this.props} savePhoto = {this.props.savePhotoThunkCreator} isOwner = {!this.props.match.params.userId} profile = {this.props.profile} status = {this.props.status} updateStatus = {this.props.updateStatusThunkCreator} /> //import props from ProfileContainer to Profile
+            <Proflie  {...this.props} savePhoto = {this.props.savePhotoThunkCreator} isOwner = {!this.props.match.params.userId} profile = {this.props.profile} status = {this.props.status} updateStatus = {this.props.updateStatusThunkCreator} /> //import props from ProfileContainer to Profile
         )
     }
 }

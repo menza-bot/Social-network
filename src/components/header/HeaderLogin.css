@@ -1,4 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+
 .login-block {
-    margin-left: 1120px;
-    margin-top: -3px;
+    margin-left: 750px;
+    margin-top: 13px;
+}
+
+.log-button {
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(155, 243, 255);
+    border-radius: 2px;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    padding: 10px 15px 10px 15px;
+    transition: .3s;
+    margin-top: -4px
+}
+
+.log-button:hover {
+    background-color: rgb(110, 110, 110);
+    border-color: white;
+    color: white
+}
+
+.log-name {
+    font-size: .8rem
+}
+
+.title {
+    font-size: .8rem;
+    padding-top: 7px
 }

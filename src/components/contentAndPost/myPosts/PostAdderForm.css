@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+
+.stupid-posts-item {
+    background-color: white;
+    font-size: 0.8rem;
+    padding: 35px;
+    padding-left: 40px;
+    padding-bottom: 25px;
+    margin-top: 15px;
+    border-radius: 8px;
+    word-wrap: break-word
+}
+
+
+.wrapper-post-adder {
+    background-color: rgb(243, 243, 243);
+    margin-top: 1rem;
+    border-radius: 8px
+}
+
+.wrapper-post-adder {
+    color: rgb(99, 99, 99)
+}
+
+.post-adder {
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+
+}
+
+.field {
+    border-style: none;
+    border-radius: 6px;
+    width: 85%;
+    height: 120px;
+    margin: 35px 40px 30px 40px;
+    resize: none
+}
+
+.field:focus {
+    outline: none;
+}
+
+.adder-button {
+    background-color: white;
+    border-radius: 2px;
+    border-width: 1px;
+    border-color: rgb(99, 99, 99);
+    width: 150px;
+    height: 30px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-left: 225px;
+    margin-bottom: 30px;
+    font-size: 0.7rem;
+}
+
+.adder-button:focus {
+    outline: none
+}
+
+.title-of-adder-button {
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.adder-button:hover {
+    background-color:rgb(243, 243, 243);
+}
+
+.adder-button::after {
+    background-color: white;
+    border-radius: 5px;
+    border-width: 1.5px;
+    border-color: rgb(99, 99, 99);
+}
+
+
+
+
+

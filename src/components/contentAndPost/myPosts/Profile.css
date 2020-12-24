@@ -1,7 +1,9 @@
 .profile {
     font-size: 1.4rem;
-    color: rgb(107, 107, 107);
+    color: rgb(255, 255, 255);
     margin-top: 45px;
     margin-left: 460px;
     margin-bottom: 45px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 25px;
 }

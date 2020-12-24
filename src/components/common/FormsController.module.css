@@ -1,15 +1,16 @@
 
 
+
+
 .formControl textarea {
-    border: solid red 4px;
+    border: solid rgb(126, 126, 126) 2px;
 }
 
-.formControl.error span {
-    color: red
+
+.formControl.error textarea {
+    border-color:hsl(0, 100%, 50%)
 }
 
 .fromSummaryError {
-    border: red, 1px, solid;
-    padding: 5px;
-    color:rosybrown
+    border: rgb(0, 0, 0), 1px, solid;
 }

@@ -1,5 +1,7 @@
 import React, { useState } from 'react' 
 import { useEffect } from 'react'
+import './StatusWithHooks.css'
+
 
 const StatusWithHooks = (props) => {
 
@@ -29,7 +31,7 @@ const StatusWithHooks = (props) => {
             <div>
                 {!editMode &&
                 <div>
-                    <span onDoubleClick = {activateEditing}>Status:{ props.status}</span>
+                    <div onDoubleClick = {activateEditing}><span className = 'status-main-block' >{props.status}</span></div>
                 </div>
                 }    
                 {editMode && <div>

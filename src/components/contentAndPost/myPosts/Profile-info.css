@@ -1,10 +1,123 @@
 
-.image-icon-profile {
-    width: 55px;
-    height: 55px;
-    border-radius: 55px
+.hr {
+    width: 175px;
+    height: .5px;
+    margin-left: 2px
 }
 
-.main-block {
-    padding: 35px
+
+
+.choose-button {
+    display: none;
 }
+
+.real-choose-button {
+    background-color:#ffffff;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-radius: 40px;
+    border-width: 2px;
+    padding-left: 9px;
+    padding-right: 9px;
+    padding-top: 15px;
+    padding-bottom: 6px;
+    cursor: pointer;
+    transition: .5s;
+    margin-left: -20px
+}
+
+.read-choose-button:hover {
+    border-color: rgb(100, 100, 100)
+}
+
+
+.wrapper-choose-button {
+    width: 12rem;
+    height: 36px;
+}
+
+
+.main-profile-info-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 20rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    font-size: .8rem;
+    padding-left: 1.5rem; 
+}
+
+.image-icon-profile {
+    width: 9rem;
+    height: 9rem;
+    border-radius: 10px;
+    margin-left: 3rem;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+    border-style: solid;
+    margin-top: 3rem
+}
+
+.fa-camera {
+    color:  rgb(0, 0, 0);
+    width: 20px;
+    height: 20px;
+    transition: 0.5s;
+}
+
+.fa-camera:hover {
+    color: rgb(100, 100, 100);
+}
+
+
+
+.main-profile-information {
+    padding: 30px;
+    height: 150px;
+    width: 200px;
+    margin-top: 22px;
+    margin-left: 50px;
+    color:rgb(139, 139, 139)
+}
+
+.full-name-block {
+    margin-top: -25px;
+    margin-bottom: 10px 
+}
+
+.full-name {
+    color: black;
+    margin-right: -20px
+}
+
+.about-me-block {
+    margin-bottom: 10px
+}
+
+.about-me {
+    color: black;
+}
+
+.looking-for-block {
+    margin-bottom: 10px
+}
+
+.looking-for-a-job {
+    color: black
+}
+
+.profile-contacts-block {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.contact-key {
+    margin-bottom: 10px
+}
+
+
+
+
+
+
+

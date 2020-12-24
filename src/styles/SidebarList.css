@@ -1,15 +1,20 @@
 .sidebarlist {
-    font-size: 1.2rem;
+    font-size: .9rem;
 }
 
 a {
     display: block;
     list-style-type: none;
-    text-align: center;
-    color: rgb(107, 107, 107);
-    margin: 1.5rem;
+    color: rgb(139, 139, 139);
+    margin: 1.3rem;
     cursor: pointer;
     text-decoration: none;
+    transition: color .5s;
+    text-align: center;
+}
+
+a:hover {
+    color: black;
 }
 
 .list {

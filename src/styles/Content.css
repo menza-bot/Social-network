@@ -1,8 +1,9 @@
 .content {
     display: grid;
     grid-area: content;
-    background-color: #ffffff;
+    background-color: rgb(243, 243 243);
     border-radius: 20px;
     margin-top: 1rem;
     margin-left: 1rem;
-}
+    margin-right: 1rem;
+} 

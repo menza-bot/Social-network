@@ -2,13 +2,14 @@
 import React from 'react' 
 import { NavLink } from 'react-router-dom'
 //import '../../../assets/images'
-import icon from "./../../../assets/item-icon.png"
+import user from './../../../assets/user.png'
 import './getUsers.css'
 
     
     
     export default function GetUsersF(props) {
-        debugger
+
+
         let pageCount = Math.ceil(props.totalUsersCount / props.pageSize) 
         
         let pages = []
@@ -23,30 +24,25 @@ import './getUsers.css'
         
         <div className="wrapper"> 
             
-            <span>
-                <div>
-                    {pages.map( item => { return <span onClick = {(e) => {props.onPageChanged(item)}}>{item}</span>})}
-                </div>
-            </span>
             
             {
             props.users.map(u => 
-                <div key = {u.id}>
-                    <div>
-                        <img src= {icon || props.users.photos.small} alt="" className = 'image-icon-users'/>
-                    </div>
-                    <div>
+                <div className = 'user-block' key = {u.id}>
+                    <span>
+                        <img src= {  user ||  u.photos.small } alt="" className = 'image-icon-users'/>
+                    </span>
+                    <span>
                         <NavLink to = {'/profile/' + u.id}>
-                            <div>
+                            <span className = 'user-name'>
                                 {u.name}
-                            </div>
+                            </span>
                             <img src="" alt=""/>
                         </NavLink>
-                    </div>
-                    <div>
+                    </span>
+                    <span>
                         {
                             u.followed 
-                            ? <button  onClick = {() => {
+                            ? <button  className = 'unfollow-button' onClick = {() => {
                                 props.unfollowAcceptThunkCreator(u.id)
                             }}>unfollow</button>
                             
@@ -54,14 +50,21 @@ import './getUsers.css'
                             : 
                             
                             
-                            <button onClick = {() => {
+                            <button  className = 'follow-button' onClick = {() => {
                                 props.followAcceptThunkCreator(u.id)
                             }}>follow</button>
                         }
-                    </div> 
+                    </span> 
                 </div>
                 )
             }
+
+            <span className = 'pagination'>
+                <div>
+                    {pages.map( item => { return <span className = 'pagination-item' onClick = {(e) => {props.onPageChanged(item)}}>{item}</span>})}
+                </div>
+            </span>
+
         </div>)
     
     }

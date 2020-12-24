@@ -2,8 +2,7 @@ import { profileAPI, usersAPI } from './../api/api'
 
 let initialState = { 
     posts: [
-        {id: 0, message: "What's up"}, 
-        {id: 1, message: "How are you"}
+        
     ],
     listOfNamesData : [
         {name: "Alex", id: 1}, 

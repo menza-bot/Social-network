@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 //import Status from './Status'
-import StatusWithHooks from './StatusWithHooks';
-import icon from "./../../../assets/item-icon.png"
+import StatusWithHooks from './StatusWithHooks'
+//import icon from "./../../../assets/item-icon.png"
 import './Profile-info.css'
+import { FaCamera } from "react-icons/fa";
 
 
 
 export const ProfileInfo = (props) => {
 
-    let [editValue, editing] = useState(false)
+    //let [editValue, editing] = useState(false)
 
 
     if (!props.profile) {
@@ -17,14 +18,13 @@ export const ProfileInfo = (props) => {
 
 
     return (
-        <div className = 'main-block'>
+        <div className = 'main-block-profile-info'>
             {/* {   
                 editValue 
                     ? <ProfileDataForm />
                     : <ProfileData editProfile = {() => {editing(true)}} savePhoto = {props.savePhoto} profile = {props.profile} isOwner = {props.isOwner} status = {props.status} updateStatus = {props.updateStatus} /> 
             } */}
-
-            <ProfileData editProfile = {() => {editing(true)}} savePhoto = {props.savePhoto} profile = {props.profile} isOwner = {props.isOwner} status = {props.status} updateStatus = {props.updateStatus}/>
+            <ProfileData updateStatus = {props.updateStatus} savePhoto = {props.savePhoto} profile = {props.profile} isOwner = {props.isOwner} status = {props.status}/>
         </div>
     ) 
 
@@ -46,27 +46,30 @@ export const ProfileInfo = (props) => {
 
 
         return (
-            <div className = 'main-block'>
-                <div>
-                    <img alt = '' src={props.profile.photos.large } className = 'image-icon-profile' />
-                    {props.isOwner && <input onChange = {mainPhotoSelected} type = 'file'/>}
+            <div className = 'main-profile-info-block'>
+                <div className = 'main-profile-photo'>
+                    <img alt = '' src={props.profile.photos.large} className = 'image-icon-profile' />
+                    {props.isOwner &&   <><input className = 'choose-button' onChange = {mainPhotoSelected} type = 'file' id = 'file-input' />
+                                        <label for = 'file-input' className = 'real-choose-button'><FaCamera className = 'fa-camera' /></label></>}
                 </div>
-
-                <div>
-                    Full name: {props.profile.fullName}
+                <div className = 'main-profile-information'>
+                    <div className = 'full-name-block'>
+                        Full name:     <span className = 'full-name'>{props.profile.fullName}</span>
+                    </div> 
+                    <div className = 'about-me-block'>
+                        About me:      <span className = 'about-me'>{props.profile.aboutMe}</span>  
+                    </div>
+                    <div className = 'looking-for-a-job-block'>
+                        Looking for:   <span className = 'looking-for-a-job'>{props.lookingForAJobDescription ? 'yes' : 'no'}</span>   
+                    </div>
+                    <div className = 'profile-contacts-block'>
+                        {Object.keys(props.profile.contacts).map(key => { return <Contact key = {key} contactTitle = {key} contactValue = {props.profile.contacts[key]}/> })}
+                    </div>
+                    
                 </div>
-                <div>
-                    About me: {props.profile.aboutMe}  
-                </div>
-                <div>
-                    Looking for a job: {props.lookingForAJobDescription ? 'yes' : 'no'}
-                </div>
-                <div>
-                    {Object.keys(props.profile.contacts).map(key => { return <Contact key = {key} contactTitle = {key} contactValue = {props.profile.contacts[key]}/> })}
-                </div>
-                <div>
-                    <StatusWithHooks  status = {props.status} updateStatus = {props.updateStatus} />
-                </div>
+                    <div>
+                        <StatusWithHooks  status = {props.status} updateStatus = {props.updateStatus} />
+                    </div>
             </div>
         
         ) 
@@ -84,7 +87,7 @@ export const ProfileInfo = (props) => {
     
     export const Contact = ({contactTitle, contactValue}) => {
         return (
-            <div> {contactTitle}: {contactValue} </div>
+            <div className = 'contact-key'> {contactTitle}: {contactValue} </div>
         )
     }
 

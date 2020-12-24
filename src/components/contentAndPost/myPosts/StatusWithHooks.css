@@ -1,0 +1,22 @@
+.status-main-block {
+    background-color: rgb(255, 255, 255);
+    width: 10rem;
+    max-width: 10rem;
+    display: inline-block;
+    height: auto;
+    transition: .5s;
+    margin-left: 2.1rem;
+    margin-bottom: 30px;
+    border-radius: 4px;
+    padding: 9px;
+    transition: .3s;
+    text-align: center;
+}
+
+
+.status-main-block:hover {
+    background-color: rgb(221, 221, 221);
+}
+
+
+

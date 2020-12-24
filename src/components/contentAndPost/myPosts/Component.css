@@ -1,0 +1,9 @@
+.main-wrapper {
+    display: grid;
+    grid-area: component;
+    height: 20rem;
+    border-radius: 20px;
+    background-color:   rgb(255, 255, 255);
+    margin-top: 1rem;
+    border-radius: 8px
+}

@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core';
+
 import React from 'react'
 import { NavLink } from "react-router-dom";
 import './HeaderLogin.css'
@@ -11,7 +11,7 @@ const HeaderLogin = (props) => {
             {  props.isAuth 
             ?
                 
-                <div>{props.login} - <Button variant = 'contained' color = 'secondary' onClick = {props.LogoutThunkCreator}>log out</Button></div>
+                <div className = 'log-name'>{props.login} - <button className = 'log-button' onClick = {props.LogoutThunkCreator}><span className = 'title'>log out</span></button></div>
                 
             : 
                 <NavLink to = {'/login'}>
